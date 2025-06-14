@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAFFICK TRACERS | Military-Grade Anti-Trafficking Intelligence</title>
+    <meta name="description" content="Advanced anti-trafficking platform with military-grade intelligence and real-time threat detection">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0e27;
+            --secondary: #1a237e;
+            --accent: #00ffff;
+            --danger: #ff1744;
+            --success: #00ff41;
+            --warning: #ffab00;
+            --glass: rgba(13, 17, 23, 0.85);
+            --neon-blue: #00d4ff;
+            --neon-green: #39ff14;
+            --neon-red: #ff073a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 30s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--accent), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🎯";
+            font-size: 1.8rem;
+            animation: logoSpin 4s linear infinite;
+        }
+
+        @keyframes logoSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .emergency-btn {
+            background: linear-gradient(45deg, var(--danger), #ff073a);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            animation: emergencyPulse 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 7, 58, 0.5);
+        }
+
+        @keyframes emergencyPulse {
+            0% { box-shadow: 0 0 20px rgba(255, 7, 58, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 7, 58, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(255, 7, 58, 0.5); }
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 2rem;
+            animation: heroFadeIn 1s ease;
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)); }
+            100% { filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--neon-green));
+            color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        .main-content {
+            margin-top: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--accent), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ai-command-center {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-command-center::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--accent), var(--neon-green), var(--accent));
+            border-radius: 20px;
+            z-index: -1;
+            animation: borderGlow 4s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .ai-interface {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .ai-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--neon-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: aiPulse 3s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes aiPulse {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+        }
+
+        .ai-status {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .ai-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .intel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .intel-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .intel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .intel-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intel-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--accent), var(--neon-green));
+            color: var(--primary);
+        }
+
+        .intel-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .intel-content {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .awareness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .awareness-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-left: 4px solid var(--warning);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .awareness-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 171, 0, 0.2);
+        }
+
+        .awareness-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--warning);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .warning-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-list li::before {
+            content: "⚠️";
+            font-size: 1.2rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close:hover {
+            color: var(--neon-red);
+            transform: scale(1.2);
+        }
+
+        .hotline-card {
+            background: rgba(13, 17, 23, 0.8);
+            border: 2px solid var(--danger);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .hotline-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.3);
+        }
+
+        .hotline-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .tactics-section {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tactic-item {
+            background: rgba(13, 17, 23, 0.6);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .tactic-item:hover {
+            background: rgba(13, 17, 23, 0.8);
+            transform: translateX(5px);
+        }
+
+        .tactic-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .indicator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .indicator-item {
+            background: rgba(255, 23, 68, 0.1);
+            border: 1px solid var(--danger);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .indicator-item:hover {
+            background: rgba(255, 23, 68, 0.2);
+            transform: scale(1.02);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .mobile-menu.active { display: block; }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .menu-toggle { display: block; }
+            .nav { padding: 1rem; }
+            .logo { font-size: 1.5rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .intel-grid { grid-template-columns: 1fr; }
+            .main-content { padding: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-number { font-size: 2rem; }
+        }
+
+        .fade-in { animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="tech-grid"></div>
+
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">TRAFFICK TRACERS</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Command</a></li>
+                <li><a href="#intelligence" class="nav-link">Intelligence</a></li>
+                <li><a href="#awareness" class="nav-link">Awareness</a></li>
+                <li><a href="#tactics" class="nav-link">Tactics</a></li>
+            </ul>
+            <button class="menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <button class="emergency-btn" onclick="openEmergencyModal()">
+                🚨 EMERGENCY
+            </button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home" class="nav-link">Command</a>
+                <a href="#intelligence" class="nav-link">Intelligence</a>
+                <a href="#awareness" class="nav-link">Awareness</a>
+                <a href="#tactics" class="nav-link">Tactics</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">TRAFFICK TRACERS</h1>
+            <p class="hero-subtitle">
+                Military-Grade Anti-Trafficking Intelligence Platform<br>
+                Real-time threat detection • Predictive analytics • Global awareness network
+            </p>
+            <div class="hero-buttons">
+                <a href="#intelligence" class="btn btn-primary">
+                    <i class="fas fa-crosshairs"></i> Access Intelligence
+                </a>
+                <a href="#awareness" class="btn btn-secondary">
+                    <i class="fas fa-shield-alt"></i> Learn Indicators
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="ai-command-center" id="intelligence">
+            <div class="ai-interface">
+                <div class="ai-avatar" onclick="activateAI()">🎯</div>
+                <div class="ai-status">
+                    <div class="ai-name">TRACER AI • <span style="color: var(--success)">ACTIVE</span></div>
+                    <div class="ai-description">
+                        Advanced neural network analyzing global trafficking patterns in real-time.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stats-grid">
+            <div class="stat-card" onclick="showStats('threats')">
+                <span class="stat-number" id="threatCount">247</span>
+                <div class="stat-label">Active Threats Detected</div>
+            </div>
+            <div class="stat-card" onclick="showStats('operations')">
+                <span class="stat-number" id="opCount">89</span>
+                <div class="stat-label">Operations Disrupted</div>
+            </div>
+            <div class="stat-card" onclick="showStats('rescued')">
+                <span class="stat-number" id="rescueCount">1,442</span>
+                <div class="stat-label">Lives Rescued This Year</div>
+            </div>
+            <div class="stat-card" onclick="showStats('networks')">
+                <span class="stat-number" id="networkCount">34</span>
+                <div class="stat-label">Criminal Networks Mapped</div>
+            </div>
+        </div>
+
+        <div class="intel-grid">
+            <div class="intel-card" onclick="expandIntel('patterns')">
+                <div class="intel-header">
+                    <div class="intel-icon"><i class="fas fa-brain"></i></div>
+                    <div class="intel-title">Pattern Recognition</div>
+                </div>
+                <div class="intel-content">
+                    AI identifies trafficking patterns using advanced algorithms. Analyzes movement patterns, communication networks, and financial transactions to detect coordinated criminal activity.
+                </div>
+            </div>
+
+            <div class="intel-card" onclick="expandIntel('social')">
+                <div class="intel-header">
+                    <div class="intel-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="intel-title">Network Analysis</div>
+                </div>
+                <div class="intel-content">
+                    Deep analysis of criminal networks using social graph theory. Maps relationships between suspects, identifies key nodes, and predicts network vulnerabilities.
+                </div>
+            </div>
+
+            <div class="intel-card" onclick="expandIntel('predictive')">
+                <div class="intel-header">
+                    <div class="intel-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="intel-title">Predictive Analytics</div>
+                </div>
+                <div class="intel-content">
+                    Forecasting models predict trafficking activities using historical data, seasonal patterns, and geopolitical factors. Early warning system for law enforcement.
+                </div>
+            </div>
+
+            <div class="intel-card" onclick="expandIntel('surveillance')">
+                <div class="intel-header">
+                    <div class="intel-icon"><i class="fas fa-satellite"></i></div>
+                    <div class="intel-title">Digital Surveillance</div>
+                </div>
+                <div class="intel-content">
+                    Continuous monitoring of digital footprints across platforms. Analyzes communication patterns, location data, and online behavior to identify suspicious activities.
+                </div>
+            </div>
+        </div>
+
+        <section class="section" id="awareness">
+            <h2 class="section-title">Trafficking Awareness & Indicators</h2>
+            
+            <div class="awareness-grid">
+                <div class="awareness-card">
+                    <div class="awareness-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Physical Indicators
+                    </div>
+                    <ul class="warning-list">
+                        <li>Unexplained injuries or signs of physical abuse</li>
+                        <li>Malnourished appearance or poor physical condition</li>
+                        <li>Inappropriate clothing for weather or setting</li>
+                        <li>Evidence of branding or tattooing</li>
+                        <li>Signs of medical neglect</li>
+                    </ul>
+                </div>
+
+                <div class="awareness-card">
+                    <div class="awareness-title">
+                        <i class="fas fa-user-secret"></i>
+                        Behavioral Indicators
+                    </div>
+                    <ul class="warning-list">
+                        <li>Fearful, anxious, or paranoid behavior</li>
+                        <li>Submissive or coached responses</li>
+                        <li>Avoids eye contact or social interaction</li>
+                        <li>Shows signs of trauma or PTSD</li>
+                        <li>Demonstrates unusually fearful reactions</li>
+                    </ul>
+                </div>
+
+                <div class="awareness-card">
+                    <div class="awareness-title">
+                        <i class="fas fa-mobile-alt"></i>
+                        Control Indicators
+                    </div>
+                    <ul class="warning-list">
+                        <li>No access to personal documents</li>
+                        <li>Restricted movement or communication</li>
+                        <li>Monitored constantly by others</li>
+                        <li>Limited knowledge of whereabouts</li>
+                        <li>No control over money or identification</li>
+                    </ul>
+                </div>
+
+                <div class="awareness-card">
+                    <div class="awareness-title">
+                        <i class="fas fa-home"></i>
+                        Living Conditions
+                    </div>
+                    <ul class="warning-list">
+                        <li>Lives in overcrowded or unsuitable conditions</li>
+                        <li>Multiple people in cramped spaces</li>
+                        <li>Restricted access to food or basic necessities</li>
+                        <li>Windows covered or secured from inside</li>
+                        <li>Evidence of confinement or security measures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="indicator-grid">
+                <div class="indicator-item">
+                    <h4>🚩 RED FLAG</h4>
+                    <p>Person claims to be older/younger than appearance suggests</p>
+                </div>
+                <div class="indicator-item">
+                    <h4>🚩 RED FLAG</h4>
+                    <p>Inconsistent or scripted personal information</p>
+                </div>
+                <div class="indicator-item">
+                    <h4>🚩 RED FLAG</h4>
+                    <p>Evidence of recruitment through false promises</p>
+                </div>
+                <div class="indicator-item">
+                    <h4>🚩 RED FLAG</h4>
+                    <p>Shows signs of debt bondage or economic control</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="tactics">
+            <h2 class="section-title">Military-Grade Counter-Trafficking Tactics</h2>
+            
+            <div class="tactics-section">
+                <h3 style="color: var(--accent); margin-bottom: 2rem;">Intelligence Collection & Analysis</h3>
+                
+                <div class="tactic-item">
+                    <div class="tactic-title">SIGINT (Signals Intelligence)</div>
+                    <p>Intercept and analyze electronic communications. Monitor phone calls, text messages, and internet communications for trafficking-related keywords and patterns.</p>
+                </div>
+
+                <div class="tactic-item">
+                    <div class="tactic-title">HUMINT (Human Intelligence)</div>
+                    <p>Deploy undercover agents and informants within criminal networks. Gather intelligence through direct human contact and infiltration operations.</p>
+                </div>
+
+                <div class="tactic-item">
+                    <div class="tactic-title">GEOINT (Geospatial Intelligence)</div>
+                
